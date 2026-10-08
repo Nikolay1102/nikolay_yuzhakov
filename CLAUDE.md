@@ -1,6 +1,15 @@
 # Working in this repository
 
-This repository is worked on mainly through Claude Code cloud sessions. The account has a cloud-session limit, and each session runs in a container that is deleted once the session goes idle. Two consequences drive everything below: a session that ends early wastes a scarce slot, and anything not committed and pushed is gone.
+This repository is for drafting litigation briefs, worked on mainly through Claude Code cloud sessions. The account has a cloud-session limit, and each session runs in a container that is deleted once the session goes idle. Two consequences drive everything below: a session that ends early wastes a scarce slot, and anything not committed and pushed is gone.
+
+## Matters and briefs
+
+Each matter lives in `matters/<matter-name>/`: `MATTER.md` is the case file (start one by copying `matters/_template/MATTER.md`), `record/` holds the record documents, and `drafts/` holds brief drafts in Markdown. Read `MATTER.md` before working on a matter and update it before ending the turn, so the next session starts from what is already established instead of re-deriving it.
+
+- No authority enters a draft unverified. Confirm every case, statute, quotation, and pin cite against the retrieved source with the Midpage legal research tools, and log it in the matter's authorities table. A citation you could not verify stays in the draft only as `[UNVERIFIED: ...]`.
+- Every factual assertion cites the record (exhibit, ECF number, page or paragraph), and the cite must match a document in `record/`. If the record does not support a fact, say so rather than softening the sentence.
+- Draft in Markdown so revisions stay surgical and diffs show what changed. Produce the .docx only when the user asks for a filing version.
+- Confidentiality: before committing anything under `matters/` other than the template, check that the GitHub repository is private. If it is public, keep the material out of git and tell the user.
 
 ## Finish the task in the session that started it
 
