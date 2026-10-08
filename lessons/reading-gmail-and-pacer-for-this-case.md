@@ -1,0 +1,6 @@
+Summary: Gmail thread results overflow the tool limit; strip quoted history with a script before reading. Midpage fetches most D. Md. filings from PACER by docket entry; the settlement-conference date lives only in chambers' emails.
+
+- Gmail search_threads and get_thread results for this case run 50KB to 600KB and are saved to tool-results files. A short Python script (JSON in, drop lines starting with ">" and everything after "On ... wrote:") cuts a 25-message thread to a few KB. Use PLAIN_TEXT format.
+- Midpage analyzeCaseDocument with entry {caseId, entryNumber} retrieved ECF Nos. 54, 58, 59, 62, 63, 65, 66, 70 in No. 8:25-cv-02299 (caseId bbcabef9-6779-5f99-a78d-d3b142e9b103); ECF No. 68 failed twice. analyzeCaseDocket with forceFetch gives the live docket.
+- The D. Md. Local Rules PDF (https://www.mdd.uscourts.gov/sites/mdd/files/LocalRules.pdf, Dec. 1, 2025 edition) downloads through WebFetch; pdftotext -layout makes it searchable. L.R. 105.9 is at p. 18–19, L.R. 607 at p. 69.
+- Scheduling facts not on the docket (conference dates offered and held, counsel transitions) come from the "Settlement Conference -- Yuzhakov v. Charles Rivers Laboratories" email thread with MDD_GLSChambers@mdd.uscourts.gov and from CM/ECF notice emails, which carry the docket text of paperless orders.

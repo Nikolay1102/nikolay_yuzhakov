@@ -1,0 +1,5 @@
+# Matter material stays out of git while the GitHub repository is public.
+# See lessons/repo-is-public-keep-matters-out-of-git.md. Remove these lines once the repository is private.
+matters/*
+!matters/_template/
+!matters/_template/**
