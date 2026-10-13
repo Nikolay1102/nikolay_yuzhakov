@@ -1,0 +1,2 @@
+# Store every vault file byte-for-byte: no line-ending conversion on any machine.
+* -text

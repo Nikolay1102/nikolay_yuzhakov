@@ -3,3 +3,10 @@
 matters/*
 !matters/_template/
 !matters/_template/**
+
+# Obsidian per-device state: window layout and caches change on every click and conflict
+# between devices. Notes, settings, plugins, and themes under .obsidian/ stay tracked.
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache
+.DS_Store

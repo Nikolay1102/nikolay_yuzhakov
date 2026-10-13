@@ -11,6 +11,17 @@ Each matter lives in `matters/<matter-name>/`: `MATTER.md` is the case file (sta
 - Draft in Markdown so revisions stay surgical and diffs show what changed. Produce the .docx only when the user asks for a filing version.
 - Confidentiality: before committing anything under `matters/` other than the template, check that the GitHub repository is private. If it is public, keep the material out of git and tell the user.
 
+## The vault
+
+This repository is also the user's Obsidian vault. Their desktop Obsidian syncs it with the Obsidian Git plugin, so notes they write arrive here and notes you commit reach them once your commit is on the branch their Obsidian pulls (the default branch). `VAULT-SETUP.md` holds their setup steps; `scripts/vault-import.sh` performed the import.
+
+- The SessionStart hook (`.claude/hooks/vault-context.sh`) prints the repository's visibility, every note's path and title, and the notes and lessons that other sessions committed to branches this checkout lacks. Those unmerged notes are memory: read them before working.
+- The note list is a map, not the content. Before answering anything about the user, their matters, people, dates, money, or past decisions, search the vault (`grep -rniI --exclude-dir=.git -e '<term>' .`, trying name variants and both Cyrillic and Latin spellings, e.g. Mykola, Nikolay, Николай, Микола) and read the matching notes; answer from them and name the note. If the vault holds nothing, say so instead of filling the gap from general knowledge.
+- Obsidian syntax: `[[Note]]` and `[[Note|alias]]` link to the file named `Note.md` anywhere in the vault, `![[file]]` embeds, YAML frontmatter holds properties, `#tag` tags. Write new notes the same way and link them to existing ones.
+- Leave `.obsidian/` (the user's app settings and plugins) alone, and do not rename or move the user's notes unless asked: Obsidian links break.
+- Git does not keep file timestamps. Original modified and created times are in `.vault-manifest.tsv`; later history is `git log -- <note>`.
+- The confidentiality rule above covers the vault: while the hook reports the repository public, commit no vault notes or personal facts.
+
 ## Finish the task in the session that started it
 
 You are operating autonomously. The user is not watching in real time and cannot answer questions mid-task, so asking 'Want me to...?' or 'Shall I...?' will block the work. For reversible actions that follow from the original request, proceed without asking. Stop only for destructive actions or genuine scope changes the user must decide.
