@@ -8,7 +8,7 @@ git rev-parse --git-dir >/dev/null 2>&1 || exit 0
 
 max_notes="${VAULT_MANIFEST_MAX:-400}"
 max_inline="${VAULT_INLINE_MAX:-6000}"
-# Unquoted paths: notes named in Cyrillic or other non-ASCII scripts must print as written.
+# Unquoted paths: notes named in non-ASCII scripts must print as written.
 export GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=core.quotepath GIT_CONFIG_VALUE_0=off
 run() { if command -v timeout >/dev/null 2>&1; then timeout "$@"; else shift; "$@"; fi; }
 
@@ -29,7 +29,7 @@ echo
 # 2. Memory on other branches: each session pushes to its own branch, so its notes and
 #    lessons are absent from the next session's checkout until merged.
 echo "## Commits on other branches not in this checkout"
-run 25 git fetch -q origin '+refs/heads/*:refs/remotes/origin/*' 2>/dev/null
+run 25 git fetch -q --prune origin '+refs/heads/*:refs/remotes/origin/*' 2>/dev/null
 found=0
 while IFS= read -r ref; do
   [ "$ref" = "origin/HEAD" ] && continue
